@@ -4,16 +4,23 @@
     padding: 15px 30px;
     align-items: center;
 
-    .independence-modal{
-        border: 1px solid #134b6b;
-        background-color: rgb(252, 255, 255);
-        color: black;
+    .independence-modal {
+        background-color: rgb(19 39 66);
+        color: rgb(108 190 252);
         border-radius: 20px;
-        .btn-submit{
-            background-color: #3edbf0
+
+        .btn-submit {
+            background-color: #3edbf0;
+            @include setSize(34px, 100px);
+            padding: 5px;
+            font-size: 15px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
         }
+
         @include setSize(auto, 1000px);
-        padding: 20px 10px;
+        padding: 30px 30px;
         display: flex;
         flex-direction: column;
         gap: 10px;
@@ -22,29 +29,23 @@
         top: 10px;
         left: 20%;
 
-        .area-action{
+        .area-action {
             display: flex;
             gap: 10px;
             margin-top: 20px;
 
         }
 
-        .btn-icon {
-            cursor: pointer;
-            padding: 5px;
-            font-size: 15px;
-            @include setSize(50px , 100px);
-            border-radius : 10px;
-        }
-       
-        .delete:hover{
-            background-color: rgba(235, 94, 59, 0.911);
 
+
+        .delete:hover {
+            background-color: rgb(255, 12, 12);
+            ;
         }
-      
+
     }
 
-    .center{
+    .center {
         text-align: center;
         font-size: 40px;
         cursor: pointer;
@@ -108,6 +109,10 @@
             .btn-submit:hover {
                 background-color: rgb(128, 255, 10);
             }
+
+            .cancel:hover {
+                background-color: rgb(255, 12, 12);
+            }
         }
 
         span {
@@ -116,7 +121,7 @@
         }
 
         .modal {
-            padding: 20px 10px;
+            padding: 20px 20px;
             display: flex;
             gap: 40px;
             flex-wrap: wrap;
@@ -124,12 +129,12 @@
             .modal-user {
                 border: 1px solid #134b6b;
                 @include setSize(auto, 45%);
-                padding: 20px 10px;
+                padding: 20px 20px;
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
 
-                .area-action{
+                .area-action {
                     display: flex;
                     gap: 10px;
                     margin-top: 20px;
@@ -140,20 +145,26 @@
                     cursor: pointer;
                     padding: 5px;
                     font-size: 15px;
-                    @include setSize(50px , 100px);
-                    border-radius : 10px;
+                    @include setSize(50px, 100px);
+                    border-radius: 10px;
+                    outline: none;
+                    border: none;
+
                 }
-                .edit:hover{
+
+                .edit:hover {
                     background-color: #3e8df0;
 
                 }
-                .delete:hover{
-                    background-color: rgba(235, 94, 59, 0.911);
+
+                .delete:hover {
+                    background-color: rgb(255, 12, 12);
 
                 }
-                .detail:hover{
+
+                .detail:hover {
                     background-color: #3edbf0;
- 
+
                 }
             }
         }
@@ -161,4 +172,3 @@
 
     }
 }
-

@@ -6,8 +6,8 @@ const Header : React.FC = () =>{
         <div className="header">
             <ul className="list">
                 <li> <Link to="buoi-hoc-1">Buổi 1</Link></li>
-                <li>buổi 2</li>
-                <li>buổi 3</li>
+                <li><Link to="buoi-hoc-2">Buổi 2</Link></li>
+                <li><Link to="buoi-hoc-3">Buổi 3</Link></li>
             </ul>
         
 

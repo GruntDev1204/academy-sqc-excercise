@@ -31,6 +31,13 @@ const EX4: React.FC = () => {
         salary: 0,
     })
     const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(null)
+    const [updateEmployee, setUpdateEmployee] = useState<Employee>({
+        id: 0,
+        fullName: "",
+        birthDay: "",
+        gender: "",
+        salary: 0,
+    })
 
     // Lấy danh sách nhân viên
     const fetchEmployees = () => {
@@ -42,26 +49,29 @@ const EX4: React.FC = () => {
             })
             .catch((error) => console.error("Error fetching employees:", error))
     }
-    
-    
-    // Gọi hàm lấy danh sách nhân viên trong useEffect
+
     useEffect(() => {
         fetchEmployees()
     }, [])
 
-
     // Hàm xử lý thay đổi dữ liệu đầu vào
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target
-        setNewEmployee((prev) => ({
-            ...prev,
-            [name]: value,
-        }))
+        if (update) {
+            setUpdateEmployee((prev) => ({
+                ...prev,
+                [name]: value,
+            }))
+        } else {
+            setNewEmployee((prev) => ({
+                ...prev,
+                [name]: value,
+            }))
+        }
     }
 
-
-    //hàm tạo (create)
-    const createAPI = () => {
+    // Tạo nhân viên mới
+    const handleCreateEmployee = () => {
         if (!newEmployee.fullName || !newEmployee.birthDay || !newEmployee.salary || !newEmployee.gender) {
             toast.error("Vui lòng điền đầy đủ thông tin!")
             return
@@ -72,7 +82,7 @@ const EX4: React.FC = () => {
             .then((response) => {
                 toast.success("Tạo nhân viên thành công!")
                 setEmployees([...employees, response.data])
-                setNewEmployee({ id: 0, fullName: "", birthDay: "", gender: "", salary: 0 }) // Reset form
+                setNewEmployee({ id: 0, fullName: "", birthDay: "", gender: "", salary: 0 })
             })
             .catch((error) => {
                 toast.error("Lỗi khi tạo nhân viên!")
@@ -80,21 +90,19 @@ const EX4: React.FC = () => {
             })
     }
 
-
-    //hàm mở form (get + id)
+    // Hiển thị thông tin chi tiết nhân viên
     const handleOpenForm = (id: number) => {
         setAction(true)
         axios
             .get(`http://localhost:8080/employees/${id}`)
-            .then((response) => {
-                setSelectedEmployee(response.data)
-            })
+            .then((response) => setSelectedEmployee(response.data))
             .catch((error) => {
+                toast.error("Lỗi khi hiển thị nhân viên!")
                 console.error("Error fetching employee details:", error)
             })
     }
 
-    //hàm xóa (delete + id)
+    // Xóa nhân viên
     const handleDeleteEmployee = (id: number) => {
         axios
             .delete(`http://localhost:8080/employees/${id}`)
@@ -108,35 +116,32 @@ const EX4: React.FC = () => {
             })
     }
 
-    //mở form update
+    // Mở form cập nhật nhân viên
     const handleOpenFormUpdate = (id: number) => {
         setUpdate(true)
         axios
             .get(`http://localhost:8080/employees/${id}`)
             .then((response) => {
                 setSelectedEmployee(response.data)
-                setNewEmployee(response.data)
-                // console.log(response.data)
+                setUpdateEmployee(response.data)
             })
             .catch((error) => {
+                toast.error("Lỗi khi hiển thị nhân viên!")
                 console.error("Error fetching employee details:", error)
             })
     }
-   
-    //update và save
+
+    // Cập nhật nhân viên
     const handleUpdateEmployee = () => {
         if (!selectedEmployee) return
 
         axios
-            .put(`http://localhost:8080/employees/${selectedEmployee.id}`, newEmployee)
-            .then((response) => {
+            .put(`http://localhost:8080/employees/${selectedEmployee.id}`, updateEmployee)
+            .then((res) => {
+                console.log(res.data)
                 toast.success("Cập nhật nhân viên thành công!")
-                setEmployees((prevEmployees) =>
-                    prevEmployees.map((emp) =>
-                        emp.id === selectedEmployee.id ? response.data : emp
-                    )
-                )
                 fetchEmployees()
+                setUpdateEmployee({ id: 0, fullName: "", birthDay: "", gender: "", salary: 0 })
                 setUpdate(false)
             })
             .catch((error) => {
@@ -145,50 +150,70 @@ const EX4: React.FC = () => {
             })
     }
 
+    //format tiền sang VNĐ
     const formatNumber = (number: number): string => {
-        return new Intl.NumberFormat('vi-VI', {
-            style: 'currency',
-            currency: 'VND'
+        return new Intl.NumberFormat("vi-VN", {
+            style: "currency",
+            currency: "VND",
         }).format(number)
     }
-    
+
+
+    const formatDate = (datetime: string): string => {
+        const input = datetime;
+        const dateObj = new Date(input);
+        const year = dateObj.getFullYear();
+        const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+        const date = dateObj.getDate().toString().padStart(2, '0');
+        const result = `${date}/${month}/${year}`;
+        return result;
+    }
 
     return (
         <div className="bai-tap">
+
             {/* Modal cập nhật */}
             {update && (
                 <div className="independence-modal">
                     <div className="user-request column">
-                        <span>Điền thông tin cho nhân viên:</span>
+                        <span>Điền thông tin mới cho nhân viên có ID : {updateEmployee.id}</span>
                         <input
                             type="text"
                             name="fullName"
-                            value={newEmployee.fullName}
+                            value={updateEmployee.fullName}
                             onChange={handleInputChange}
                             placeholder="Please type full name"
                         />
                         <input
                             type="date"
                             name="birthDay"
-                            value={newEmployee.birthDay}
+                            value={updateEmployee.birthDay}
                             onChange={handleInputChange}
                             placeholder="Please type birthday"
                         />
                         <input
                             type="number"
                             name="salary"
-                            value={newEmployee.salary}
+                            value={updateEmployee.salary}
                             onChange={handleInputChange}
                             placeholder="Please type salary"
                         />
-                        <select name="gender" value={newEmployee.gender} onChange={handleInputChange}>
+                        <select name="gender" value={updateEmployee.gender} onChange={handleInputChange}>
                             <option value="">Chọn giới tính</option>
                             <option value="Nam">Nam</option>
                             <option value="Nữ">Nữ</option>
                         </select>
-                        <button className="btn-submit" onClick={handleUpdateEmployee}>
-                            Update
-                        </button>
+
+                        <div className="area-action">
+                            <button className="btn-submit" onClick={handleUpdateEmployee}>
+                                Update <i className="fa-solid fa-check"></i>
+                            </button>
+
+                            <button className="btn-submit cancel" onClick={() => setUpdate(false)}>
+                                Cancel <i className="fa-solid fa-x"></i>
+                            </button>
+                        </div>
+
                     </div>
                 </div>
             )}
@@ -198,11 +223,14 @@ const EX4: React.FC = () => {
                 <div className="independence-modal" key={selectedEmployee.id}>
                     <span>ID: {selectedEmployee.id}</span>
                     <span>Name: {selectedEmployee.fullName}</span>
-                    <span>Date of Birth: {selectedEmployee.birthDay}</span>
+                    <span>Date of Birth: {formatDate(selectedEmployee.birthDay)}</span>
                     <span>Gender: {selectedEmployee.gender}</span>
                     <span>Salary: {formatNumber(selectedEmployee.salary)}</span>
                     <div className="area-action">
-                        <button className="btn-icon delete" onClick={() => setAction(false)}>
+                        <button className="btn-submit delete" onClick={() => {
+                            setAction(false)
+                            setSelectedEmployee(null)
+                        }}>
                             Close <i className="fa-solid fa-x"></i>
                         </button>
                     </div>
@@ -241,7 +269,7 @@ const EX4: React.FC = () => {
                     <option value="Nam">Nam</option>
                     <option value="Nữ">Nữ</option>
                 </select>
-                <button className="btn-submit" onClick={createAPI}>Create</button>
+                <button className="btn-submit" onClick={handleCreateEmployee}>Create</button>
             </div>
 
             <p className="center">
@@ -254,7 +282,7 @@ const EX4: React.FC = () => {
                     <div key={employee.id} className="modal-user">
                         <span>ID: {employee.id}</span>
                         <span>Name: {employee.fullName}</span>
-                        <span>Date of Birth: {employee.birthDay}</span>
+                        <span>Date of Birth: {formatDate(employee.birthDay)}</span>
                         <span>Gender: {employee.gender}</span>
                         <span>Salary: {formatNumber(employee.salary)}</span>
                         <div className="area-action">

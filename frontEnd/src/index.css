@@ -88,13 +88,12 @@ a {
   align-items: center;
 }
 .body .independence-modal {
-  border: 1px solid #134b6b;
-  background-color: rgb(252, 255, 255);
-  color: black;
+  background-color: rgb(19, 39, 66);
+  color: rgb(108, 190, 252);
   border-radius: 20px;
   height: auto;
   width: 1000px;
-  padding: 20px 10px;
+  padding: 30px 30px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -105,22 +104,21 @@ a {
 }
 .body .independence-modal .btn-submit {
   background-color: #3edbf0;
+  height: 34px;
+  width: 100px;
+  padding: 5px;
+  font-size: 15px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
 }
 .body .independence-modal .area-action {
   display: flex;
   gap: 10px;
   margin-top: 20px;
 }
-.body .independence-modal .btn-icon {
-  cursor: pointer;
-  padding: 5px;
-  font-size: 15px;
-  height: 50px;
-  width: 100px;
-  border-radius: 10px;
-}
 .body .independence-modal .delete:hover {
-  background-color: rgba(235, 94, 59, 0.911);
+  background-color: rgb(255, 12, 12);
 }
 .body .center {
   text-align: center;
@@ -178,12 +176,15 @@ a {
 .body .bai-tap .user-request .btn-submit:hover {
   background-color: rgb(128, 255, 10);
 }
+.body .bai-tap .user-request .cancel:hover {
+  background-color: rgb(255, 12, 12);
+}
 .body .bai-tap span {
   font-size: 20px;
   line-height: 35px;
 }
 .body .bai-tap .modal {
-  padding: 20px 10px;
+  padding: 20px 20px;
   display: flex;
   gap: 40px;
   flex-wrap: wrap;
@@ -192,7 +193,7 @@ a {
   border: 1px solid #134b6b;
   height: auto;
   width: 45%;
-  padding: 20px 10px;
+  padding: 20px 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -209,12 +210,14 @@ a {
   height: 50px;
   width: 100px;
   border-radius: 10px;
+  outline: none;
+  border: none;
 }
 .body .bai-tap .modal .modal-user .edit:hover {
   background-color: #3e8df0;
 }
 .body .bai-tap .modal .modal-user .delete:hover {
-  background-color: rgba(235, 94, 59, 0.911);
+  background-color: rgb(255, 12, 12);
 }
 .body .bai-tap .modal .modal-user .detail:hover {
   background-color: #3edbf0;
