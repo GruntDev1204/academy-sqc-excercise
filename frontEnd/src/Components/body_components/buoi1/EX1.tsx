@@ -17,13 +17,13 @@ Output:
 
 const EX1: React.FC = () => {
 
-   
+
 
     const [name, setName] = useState("")
 
-    const [apiRes , setApiRes] = useState("")
+    const [apiRes, setApiRes] = useState("")
 
-    const [apiStatus , SetApiStatus] = useState("")
+    const [apiStatus, SetApiStatus] = useState("")
 
 
     // Hàm để gọi API và hiển thị thông báo toast
@@ -39,8 +39,8 @@ const EX1: React.FC = () => {
             setApiRes(res.data.message)
             SetApiStatus(res.data.status)
 
-            
-        } catch (error : any) {
+
+        } catch (error: any) {
             // Hiển thị thông báo lỗi nếu có lỗi xảy ra trong quá trình gọi API
             toast.error(error.response?.data?.message || "Có lỗi xảy ra khi gọi API");
         }

@@ -15,18 +15,18 @@ Nếu từ không có trong từ điển, API sẽ trả về thông báo "Khôn
 const EX3: React.FC = () => {
 
     const [word, setWord] = useState<string>("")
-    
+
     const [result, setResult] = useState<string>("")
 
 
 
     const [apiStatus, setApiStatus] = useState<string>("")
 
-   
+
 
     const dictionaryAPI = async (): Promise<void> => {
 
-        if(word === "" ){
+        if (word === "") {
             toast.error("ko được bỏ trống từ cần điền")
             return
         }

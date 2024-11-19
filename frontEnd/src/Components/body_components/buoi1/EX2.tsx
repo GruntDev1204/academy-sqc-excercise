@@ -9,7 +9,7 @@ const taskDescription: string = "Xây dựng một API GET trong Spring Boot v�
 
 const EX2: React.FC = () => {
 
-    const [firstNumber, setFirstNumber] =useState<string>("")
+    const [firstNumber, setFirstNumber] = useState<string>("")
     const [secondNumber, setSecondNumber] = useState<string>("")
     const [operation, setOperation] = useState<string>("")
 
@@ -17,8 +17,8 @@ const EX2: React.FC = () => {
 
 
 
-    const [apiRes , setApiRes] = useState<string>("")
-    const [apiStatus , setApiStatus] = useState<string>("")
+    const [apiRes, setApiRes] = useState<string>("")
+    const [apiStatus, setApiStatus] = useState<string>("")
 
     const payLoad = {
         number1: firstNumber,
@@ -31,7 +31,7 @@ const EX2: React.FC = () => {
 
         try {
 
-            const res = await axios.post(`http://localhost:8080/caculator` , payLoad)
+            const res = await axios.post(`http://localhost:8080/caculator`, payLoad)
 
             // Hiển thị thông báo thành công với kết quả API trả về
             toast.success("gọi Api từ Spring boot thành công")
@@ -43,7 +43,7 @@ const EX2: React.FC = () => {
 
 
 
-           
+
         } catch (error: any) {
             if (error.response) {
                 // Khi nhận được phản hồi lỗi từ server (mã lỗi 4xx, 5xx)
@@ -57,8 +57,7 @@ const EX2: React.FC = () => {
             }
         }
 
-        setFirstNumber("")
-        setSecondNumber("")
+
 
     }
 

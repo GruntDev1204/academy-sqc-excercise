@@ -87,6 +87,28 @@ a {
   padding: 15px 30px;
   align-items: center;
 }
+.body .flex {
+  display: flex;
+  align-items: center;
+  gap: 60%;
+}
+.body .editt {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: -11%;
+  position: relative;
+  left: 53%;
+  background: rgba(0, 0, 0, 0.394);
+  cursor: pointer;
+  padding: 5px;
+}
+.body .editt:hover {
+  background-color: black;
+}
 .body .independence-modal {
   background-color: rgb(19, 39, 66);
   color: rgb(108, 190, 252);
@@ -101,6 +123,18 @@ a {
   z-index: 9999;
   top: 10px;
   left: 20%;
+}
+.body .independence-modal .avatar-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.body .independence-modal .avatar-area .avatar {
+  margin: 5px 10px;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 .body .independence-modal .btn-submit {
   background-color: #3edbf0;
@@ -145,9 +179,39 @@ a {
   gap: 20px;
   margin-bottom: 50px;
 }
+.body .bai-tap .btn-large {
+  height: auto;
+  width: fit-content;
+  font-size: 20px;
+  padding: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+.body .bai-tap .btn-large:hover {
+  background-color: #3e8df0;
+}
 .body .bai-tap .user-request {
   display: flex;
   gap: 10px;
+  display: flex;
+}
+.body .bai-tap .user-request .file-area {
+  border: 1px solid;
+  margin: 20px 0px;
+  padding: 5px 10px;
+  width: 90%;
+  display: flex;
+  border-radius: 20px;
+}
+.body .bai-tap .user-request .file-area button {
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.body .bai-tap .user-request .file-area button:hover {
+  background-color: #3edbf0;
 }
 .body .bai-tap .user-request input {
   padding: 5px;
@@ -197,6 +261,24 @@ a {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+.body .bai-tap .modal .modal-user .avatar-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.body .bai-tap .modal .modal-user .avatar-area .avatar {
+  margin: 5px 10px;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.body .bai-tap .modal .modal-user .btn-submit {
+  padding: 5px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
 }
 .body .bai-tap .modal .modal-user .area-action {
   display: flex;
