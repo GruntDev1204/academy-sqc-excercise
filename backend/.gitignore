@@ -4,8 +4,8 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
-src/main/java/com.da_thao.project_test/DatabaseConnection.java
-src/main/resources/db.sql
+src/main/java/com.da_thao.project_test/config/DatabaseConnection.java
+src/main/resources
 ### STS ###
 .apt_generated
 .classpath

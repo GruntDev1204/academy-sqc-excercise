@@ -7,22 +7,23 @@ import java.sql.*;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class DatabaseConnection {
-    static String jdbcURL = "jdbc:mysql://127.0.0.1:3306/spring_boot_freamwork?useSSL=false&serverTimezone=UTC";
-    static String jdbcUsername = "root";
+    static String jdbcURL = "your-link";
+    static String jdbcUsername = "";
     static String jdbcPassword = "";
     static Connection connection;
 
+
     /**
-     * Phương thức getConnection để lấy kết nối tới cơ sở dữ liệu.
-     * Phương thức này kiểm tra nếu connection chưa được khởi tạo (connection == null) thì sẽ tạo một kết nối mới.
+     * closeConnection - this method to get the connection to database server
+     * check if  connection not exist (connection == null) , then it make the new connect.
      */
     public static Connection getConnection() {
         if (connection == null) {
             try {
-                // Tải driver JDBC cho MySQL vào bộ nhớ, điều này cần thiết để có thể kết nối.
                 Class.forName("com.mysql.jdbc.Driver");
-                // Khởi tạo kết nối tới cơ sở dữ liệu với các thông tin đã cung cấp (URL, username, password).
+
                 connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+
             } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -31,7 +32,7 @@ public class DatabaseConnection {
     }
 
     /**
-     * Phương thức closeConnection để đóng kết nối tới cơ sở dữ liệu khi không cần sử dụng nữa.
+     * closeConnection - this method to close the connection
      */
     public static void closeConnection() throws SQLException {
         if (connection != null && !connection.isClosed()) {
@@ -40,11 +41,13 @@ public class DatabaseConnection {
         }
     }
 
-    //for select
-    public static ResultSet executeQuery(String query, Object... parameters) {
+
+    //methods using in repository
+    //for use select query
+    public static ResultSet executeQuery(String sql, Object... parameters) {
         ResultSet resultSet = null;
         try {
-            PreparedStatement preparedStatement = getConnection().prepareStatement(query);
+            PreparedStatement preparedStatement = getConnection().prepareStatement(sql);
             for (int i = 0; i < parameters.length; i++) {
                 preparedStatement.setObject(i + 1, parameters[i]);
             }
@@ -57,10 +60,10 @@ public class DatabaseConnection {
         return resultSet;
     }
 
-    //for any change
-    public static Integer executeUpdate(String query, Object... parameters) {
+    //for any change (delete , set , create)
+    public static Integer executeUpdate(String sql, Object... parameters) {
         Integer generatedId = -1;
-        try (PreparedStatement preparedStatement = getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement preparedStatement = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             for (int i = 0; i < parameters.length; i++) {
                 preparedStatement.setObject(i + 1, parameters[i]);

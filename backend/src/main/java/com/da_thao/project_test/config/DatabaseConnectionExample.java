@@ -12,6 +12,7 @@ public class DatabaseConnectionExample {
     static String jdbcPassword = "";
     static Connection connection;
 
+
     /**
      * closeConnection - this method to get the connection to database server
      * check if  connection not exist (connection == null) , then it make the new connect.
