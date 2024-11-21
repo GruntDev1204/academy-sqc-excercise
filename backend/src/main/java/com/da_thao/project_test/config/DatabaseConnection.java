@@ -7,11 +7,10 @@ import java.sql.*;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class DatabaseConnection {
-    static String jdbcURL = "your-link";
+    static String jdbcURL = "jdbc:mysql://127.0.0.1:3306/spring_boot_freamwork?useSSL=false&serverTimezone=UTC\n";
     static String jdbcUsername = "";
     static String jdbcPassword = "";
     static Connection connection;
-
 
     /**
      * closeConnection - this method to get the connection to database server
@@ -40,7 +39,6 @@ public class DatabaseConnection {
             connection = null;
         }
     }
-
 
     //methods using in repository
     //for use select query
