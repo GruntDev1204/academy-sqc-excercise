@@ -15,8 +15,6 @@ const EX2: React.FC = () => {
 
     const [result, setResult] = useState<string>("")
 
-
-
     const [apiRes, setApiRes] = useState<string>("")
     const [apiStatus, setApiStatus] = useState<string>("")
 
@@ -41,9 +39,6 @@ const EX2: React.FC = () => {
             setApiRes(res.data.message)
             setResult(res.data.result)
 
-
-
-
         } catch (error: any) {
             if (error.response) {
                 // Khi nhận được phản hồi lỗi từ server (mã lỗi 4xx, 5xx)
@@ -60,8 +55,6 @@ const EX2: React.FC = () => {
 
 
     }
-
-
 
     return (
         <div className="bai-tap">
