@@ -7,8 +7,8 @@ import java.sql.*;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class DatabaseConnection {
-    static String jdbcURL = "jdbc:mysql://127.0.0.1:3306/spring_boot_freamwork?useSSL=false&serverTimezone=UTC\n";
-    static String jdbcUsername = "";
+    static String jdbcURL = "jdbc:mysql://127.0.0.1:3306/spring_boot_freamwork?useSSL=false&serverTimezone=UTC";
+    static String jdbcUsername = "root";
     static String jdbcPassword = "";
     static Connection connection;
 

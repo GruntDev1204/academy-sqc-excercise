@@ -25,33 +25,33 @@ public class EmployeeController implements RestControllerInterface<Employee, Fin
     @Override
     @GetMapping("")
     public ResponseEntity<ApiResponse<List<Employee>>> getAll(FindEmployee findEmployee) {
-        return res.createSuccessResponse(SuccessCode.EMPLOYEES_GET_ALL_SUCCESS, employeeService.getAll(findEmployee));
+        return res.returnResponseJson(SuccessCode.GET_ALL_SUCCESS, employeeService.getAll(findEmployee));
     }
 
     @Override
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<Employee>> findById(@PathVariable Integer id) {
-        return res.createSuccessResponse(SuccessCode.EMPLOYEES_GET_BY_VALUE_SUCCESS, employeeService.findById(id));
+        return res.returnResponseJson(SuccessCode.GET_BY_ID_SUCCESS, employeeService.findById(id));
     }
 
     @Override
     @PostMapping("")
     public ResponseEntity<ApiResponse<Employee>> create(@RequestBody Employee employee) {
-        return res.createSuccessResponse(SuccessCode.EMPOYEES_CREATED_SUCCESS, employeeService.create(employee));
+        return res.returnResponseJson(SuccessCode.CREATE_SUCCESS, employeeService.create(employee));
     }
 
     @Override
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse<Void>> delete(@PathVariable Integer id) {
         Boolean action = employeeService.delete(id);
-        if (action) return res.createSuccessResponse(SuccessCode.EMPLOYEES_DELETED_SUCCESS);
+        if (action) return res.returnResponseJson(SuccessCode.DELETE_SUCCESS);
         else return null;
     }
 
     @Override
     @PutMapping("/{id}")
     public ResponseEntity<ApiResponse<Employee>> update(@PathVariable Integer id, @RequestBody Employee updatedEmployee) {
-        return res.createSuccessResponse(SuccessCode.EMPLOYEES_UPDATED_SUCCESS, employeeService.update(id, updatedEmployee));
+        return res.returnResponseJson(SuccessCode.UPDATE_SUCCESS, employeeService.update(id, updatedEmployee));
     }
 
 }

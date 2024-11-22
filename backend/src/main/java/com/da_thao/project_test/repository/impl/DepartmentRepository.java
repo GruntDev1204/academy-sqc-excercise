@@ -59,7 +59,7 @@ public class DepartmentRepository implements InterfaceRepository<Department, Obj
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if (department == null) throw new ApiException(ErrorCode.DEPARTMENT_NOT_FOUND);
+        if (department == null) throw new ApiException(ErrorCode.GENERAL_NOT_FOUND);
         return department;
 
     }
@@ -72,7 +72,7 @@ public class DepartmentRepository implements InterfaceRepository<Department, Obj
 
         if (rowsAffected > 0) {
             return findById(rowsAffected);
-        } else throw new ApiException(ErrorCode.EMPLOYEES_CREATE_FAILED);
+        } else throw new ApiException(ErrorCode.CREATE_FAILED);
     }
 
     @Override
@@ -82,7 +82,7 @@ public class DepartmentRepository implements InterfaceRepository<Department, Obj
 
         String query = "DELETE FROM departments " +
                 "WHERE id = ?";
-        int rowsAffected = DatabaseConnection.executeUpdate(query, id);
+        DatabaseConnection.executeUpdate(query, id);
         return true;
     }
 
@@ -93,9 +93,9 @@ public class DepartmentRepository implements InterfaceRepository<Department, Obj
         updateDepartment.setName(department.getName());
 
         String query = "UPDATE departments SET name = ? WHERE id = ?";
-        int rowsAffected = DatabaseConnection.executeUpdate(query, department.getName(), id);
-        if (rowsAffected > 0) return updateDepartment;
-        else throw new ApiException(ErrorCode.EMPLOYEES_UPDATE_FAILED);
+        DatabaseConnection.executeUpdate(query, department.getName(), id);
+
+        return this.findById(id);
     }
 
 }

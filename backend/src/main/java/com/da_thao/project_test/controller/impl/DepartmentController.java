@@ -24,19 +24,19 @@ public class DepartmentController implements RestControllerInterface<Department,
     @GetMapping
     @Override
     public ResponseEntity<ApiResponse<List<Department>>> getAll(Object requestParam) {
-        return res.createSuccessResponse(SuccessCode.DEPARTMENT_GET_ALL_SUCCESS, departmentService.getAll(requestParam));
+        return res.returnResponseJson(SuccessCode.GET_ALL_SUCCESS, departmentService.getAll(requestParam));
     }
 
     @GetMapping("/{id}")
     @Override
     public ResponseEntity<ApiResponse<Department>> findById(@PathVariable Integer id) {
-        return res.createSuccessResponse(SuccessCode.DEPARTMENT_GET_BY_VALUE_SUCCESS, departmentService.findById(id));
+        return res.returnResponseJson(SuccessCode.GET_BY_ID_SUCCESS, departmentService.findById(id));
     }
 
     @PostMapping
     @Override
     public ResponseEntity<ApiResponse<Department>> create(@RequestBody Department department) {
-        return res.createSuccessResponse(SuccessCode.DEPARTMENT_CREATE_SUCCESS, departmentService.create(department));
+        return res.returnResponseJson(SuccessCode.CREATE_SUCCESS, departmentService.create(department));
     }
 
     @Override
@@ -44,14 +44,14 @@ public class DepartmentController implements RestControllerInterface<Department,
     public ResponseEntity<ApiResponse<Void>> delete(@PathVariable Integer id) {
         Boolean action = departmentService.delete(id);
 
-        if (action) return res.createSuccessResponse(SuccessCode.EMPLOYEES_DELETED_SUCCESS);
+        if (action) return res.returnResponseJson(SuccessCode.DELETE_SUCCESS);
         else return null;
     }
 
     @Override
     @PutMapping("/{id}")
     public ResponseEntity<ApiResponse<Department>> update(@PathVariable Integer id, @RequestBody Department updateDepartment) {
-        return res.createSuccessResponse(SuccessCode.DEPARTMENT_UPDATE_SUCCESS, departmentService.update(id, updateDepartment));
+        return res.returnResponseJson(SuccessCode.UPDATE_SUCCESS, departmentService.update(id, updateDepartment));
     }
 
 }

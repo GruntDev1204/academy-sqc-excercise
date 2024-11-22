@@ -106,7 +106,7 @@ public class MarketPlaceRepository implements InterfaceRepository<MartketPlace, 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if (martketPlace == null) throw new ApiException(ErrorCode.DEPARTMENT_NOT_FOUND);
+        if (martketPlace == null) throw new ApiException(ErrorCode.GENERAL_NOT_FOUND);
         return martketPlace;
     }
 
@@ -122,7 +122,7 @@ public class MarketPlaceRepository implements InterfaceRepository<MartketPlace, 
 
         if (rowsAffected > 0) {
             return findById(rowsAffected);
-        } else throw new ApiException(ErrorCode.EMPLOYEES_CREATE_FAILED);
+        } else throw new ApiException(ErrorCode.CREATE_FAILED);
     }
 
     @Override
@@ -153,13 +153,14 @@ public class MarketPlaceRepository implements InterfaceRepository<MartketPlace, 
                 " name = ? , address = ?  , area = ?  , " +
                 "rent_price = ? , start_date = ? , type_id = ? " +
                 " WHERE id = ?";
-        int rowsAffected = DatabaseConnection.executeUpdate(query,
+        DatabaseConnection.executeUpdate(query,
                 updateMarketPlace.getName()
                 , updateMarketPlace.getAddress(),
                 updateMarketPlace.getArea(),
                 updateMarketPlace.getRentPrice(),
                 updateMarketPlace.getStartDate(), updateMarketPlace.getTypeId(), id);
-        if (rowsAffected > 0) return updateMarketPlace;
-        else throw new ApiException(ErrorCode.EMPLOYEES_UPDATE_FAILED);
+
+        return this.findById(id);
+
     }
 }

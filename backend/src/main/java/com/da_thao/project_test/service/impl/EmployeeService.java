@@ -5,7 +5,7 @@ import com.da_thao.project_test.exception.ApiException;
 import com.da_thao.project_test.model.Employee;
 import com.da_thao.project_test.dto.data_filter.FindEmployee;
 import com.da_thao.project_test.repository.InterfaceRepository;
-import com.da_thao.project_test.request_param.vaild_request.RequestInterface;
+import com.da_thao.project_test.request_param.vaild_request.InterfaceRequest;
 import com.da_thao.project_test.service.InterfaceService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -22,7 +22,7 @@ import java.util.List;
 public class EmployeeService implements InterfaceService<Employee, FindEmployee> {
 
     InterfaceRepository<Employee, FindEmployee> employeeRepository;
-    RequestInterface<Employee> requestDataEmployees;
+    InterfaceRequest<Employee> requestDataEmployees;
 
     @Override
     public List<Employee> getAll(FindEmployee requestParam) {
@@ -52,8 +52,7 @@ public class EmployeeService implements InterfaceService<Employee, FindEmployee>
         if (requestDataEmployees.checkRequest(e)) {
             return this.employeeRepository.update(id, e);
         }
-
-        return null;
+        throw new ApiException(ErrorCode.UPDATE_FAILED);
     }
 
 }

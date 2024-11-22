@@ -9,25 +9,26 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 @AllArgsConstructor
-@FieldDefaults(level =  AccessLevel.PRIVATE , makeFinal = true)
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public enum SuccessCode implements CodeResponseInterface {
-    EMPLOYEES_GET_ALL_SUCCESS(20001 , "Success" , HttpStatus.OK),
-    EMPLOYEES_GET_BY_VALUE_SUCCESS(20002 , "Object get Successfully" , HttpStatus.OK),
-    EMPOYEES_CREATED_SUCCESS(20101 , "Created Employee Successfully!" , HttpStatus.CREATED),
-    EMPLOYEES_UPDATED_SUCCESS(20002, "UPDATED EMPLOYEE SUCCESSFULLY!", HttpStatus.OK),
-    EMPLOYEES_DELETED_SUCCESS(20003, "DELETED EMPLOYEE SUCCESSFULLY!", HttpStatus.OK),
+    // Success codes for GET operations
+    GET_ALL_SUCCESS(20001, "Successfully retrieved all DATA!", HttpStatus.OK),
+    GET_BY_ID_SUCCESS(20002, "Successfully retrieved the requested DATA!", HttpStatus.OK),
 
-    DEPARTMENT_GET_ALL_SUCCESS(20010, " DEPARTMENT GET SUCCESSFULLY!", HttpStatus.OK),
-    DEPARTMENT_GET_BY_VALUE_SUCCESS(20011, "Object DEPARTMENT GET SUCCESSFULLY!", HttpStatus.OK),
-    DEPARTMENT_CREATE_SUCCESS(20102, "Created DEPARTMENT SUCCESSFULLY!", HttpStatus.CREATED),
-    DEPARTMENT_DELETE_SUCCESS(20012, "Deleted DEPARTMENT SUCCESSFULLY!", HttpStatus.OK),
-    DEPARTMENT_UPDATE_SUCCESS(20012, "Updated DEPARTMENT SUCCESSFULLY!", HttpStatus.CREATED),
+    // Success codes for POST/CREATE operations
+    CREATE_SUCCESS(20100, "Successfully created the DATA!", HttpStatus.CREATED),
+
+    // Success codes for PUT/UPDATE operations
+    UPDATE_SUCCESS(20003, "Successfully updated the DATA!", HttpStatus.OK),
+
+    // Success codes for DELETE operations
+    DELETE_SUCCESS(20404, "Successfully deleted the DATA!", HttpStatus.NO_CONTENT),
 
     ;
 
-   Integer code;
-   String message;
-   HttpStatus status;
+    Integer code;
+    String message;
+    HttpStatus status;
 
 }
 

@@ -4,7 +4,7 @@ import com.da_thao.project_test.dto.code_response.impl.ErrorCode;
 import com.da_thao.project_test.exception.ApiException;
 import com.da_thao.project_test.model.Department;
 import com.da_thao.project_test.repository.impl.DepartmentRepository;
-import com.da_thao.project_test.request_param.vaild_request.RequestInterface;
+import com.da_thao.project_test.request_param.vaild_request.InterfaceRequest;
 import com.da_thao.project_test.service.InterfaceService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -20,7 +20,7 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class DepartmentService implements InterfaceService<Department, Object> {
     DepartmentRepository dR;
-    RequestInterface<Department> requestDepartment;
+    InterfaceRequest<Department> requestDepartment;
 
     @Override
     public List<Department> getAll(Object requestParam) {
@@ -34,7 +34,7 @@ public class DepartmentService implements InterfaceService<Department, Object> {
 
     @Override
     public Department create(Department d) {
-        if (!requestDepartment.checkRequest(d)) throw new ApiException(ErrorCode.DEPARTMENT_GET_ALL_FAILED);
+        if (!requestDepartment.checkRequest(d)) throw new ApiException(ErrorCode.GENERAL_GET_FAILED);
         return dR.create(d);
     }
 
@@ -45,7 +45,8 @@ public class DepartmentService implements InterfaceService<Department, Object> {
 
     @Override
     public Department update(Integer id, Department d) {
-        if (requestDepartment.checkRequest(d)) throw new ApiException(ErrorCode.EMPLOYEES_CREATE_FAILED);
-        return dR.update(id, d);
+        if (requestDepartment.checkRequest(d)) return dR.update(id, d);
+        ;
+        throw new ApiException(ErrorCode.UPDATE_FAILED);
     }
 }

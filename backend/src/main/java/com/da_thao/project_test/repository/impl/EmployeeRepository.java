@@ -64,7 +64,7 @@ public class EmployeeRepository implements InterfaceRepository<Employee, FindEmp
             throw new RuntimeException(e);
         }
 
-        if (employee == null) throw new ApiException(ErrorCode.EMPLOYEES_NOT_FOUND);
+        if (employee == null) throw new ApiException(ErrorCode.GENERAL_NOT_FOUND);
 
         return employee;
     }
@@ -78,9 +78,9 @@ public class EmployeeRepository implements InterfaceRepository<Employee, FindEmp
                 java.sql.Date.valueOf(e.getBirthDay()), e.getAvatar(), e.getDepartmentId());
 
         if (generatedId > 0) {
-            return findById(generatedId);
+            return this.findById(generatedId);
         } else {
-            throw new ApiException(ErrorCode.EMPLOYEES_CREATE_FAILED);
+            throw new ApiException(ErrorCode.CREATE_FAILED);
         }
     }
 
@@ -91,7 +91,7 @@ public class EmployeeRepository implements InterfaceRepository<Employee, FindEmp
 
         String query = "DELETE FROM employees " +
                 "WHERE id = ?";
-        int rowsAffected = DatabaseConnection.executeUpdate(query, id);
+        DatabaseConnection.executeUpdate(query, id);
 
         return true;
     }
@@ -112,13 +112,12 @@ public class EmployeeRepository implements InterfaceRepository<Employee, FindEmp
         String query = "UPDATE employees SET full_name = ?, salary = ?, gender = ?, phone_number = ?, " +
                 "birthDay = ?, avatar = ?, department_id = ? WHERE id = ?";
 
-        int rowsAffected = DatabaseConnection.executeUpdate(query, updatedEmployee.getFullName(), updatedEmployee.getSalary(),
+        DatabaseConnection.executeUpdate(query, updatedEmployee.getFullName(), updatedEmployee.getSalary(),
                 updatedEmployee.getGender().equalsIgnoreCase("Male"), updatedEmployee.getPhoneNumber(),
                 java.sql.Date.valueOf(updatedEmployee.getBirthDay()), updatedEmployee.getAvatar(),
                 updatedEmployee.getDepartmentId(), id);
 
-        if (rowsAffected > 0) return e;
-        else throw new ApiException(ErrorCode.EMPLOYEES_UPDATE_FAILED);
+        return this.findById(id);
     }
 
 }

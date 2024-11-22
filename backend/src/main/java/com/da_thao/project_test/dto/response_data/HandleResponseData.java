@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class HandleResponseData {
 
-    public <T> ResponseEntity<ApiResponse<T>> createSuccessResponse(SuccessCode successCode, T data) {
+    public <T> ResponseEntity<ApiResponse<T>> returnResponseJson(SuccessCode successCode, T data) {
         ApiResponse<T> response = ApiResponse.<T>builder()
                 .code(successCode.getCode())
                 .message(successCode.getMessage())
@@ -17,8 +17,8 @@ public class HandleResponseData {
         return ResponseEntity.status(successCode.getStatus()).body(response);
     }
 
-    public  ResponseEntity<ApiResponse<Void>> createSuccessResponse(SuccessCode successCode) {
-        return createSuccessResponse(successCode, null);
+    public ResponseEntity<ApiResponse<Void>> returnResponseJson(SuccessCode successCode) {
+        return this.returnResponseJson(successCode, null);
     }
 
 }

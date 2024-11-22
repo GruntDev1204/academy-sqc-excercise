@@ -1,7 +1,9 @@
 package com.da_thao.project_test.request_param.vaild_request.impl;
 
+import com.da_thao.project_test.dto.code_response.impl.ErrorCode;
+import com.da_thao.project_test.exception.ApiException;
 import com.da_thao.project_test.model.MartketPlace;
-import com.da_thao.project_test.request_param.vaild_request.RequestInterface;
+import com.da_thao.project_test.request_param.vaild_request.InterfaceRequest;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +12,7 @@ import java.util.Map;
 
 @Component
 @Primary
-public class MarketPlaceRequest implements RequestInterface<MartketPlace> {
+public class MarketPlaceRequest implements InterfaceRequest<MartketPlace> {
 
 
     @Override
@@ -27,7 +29,7 @@ public class MarketPlaceRequest implements RequestInterface<MartketPlace> {
         if (model.getRentPrice() == null) detailError.put("rent-price", "Martket Place rentPrice name object is null");
         if (model.getStartDate() == null)
             detailError.put("start date ", "Martket Place area start date object is null");
-
+        if (!detailError.isEmpty()) throw new ApiException(ErrorCode.BAD_REQUEST, detailError);
         return true;
     }
 }

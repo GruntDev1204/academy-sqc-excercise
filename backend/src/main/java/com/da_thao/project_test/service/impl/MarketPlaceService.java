@@ -5,7 +5,7 @@ import com.da_thao.project_test.dto.data_filter.MarketPlaceFilter;
 import com.da_thao.project_test.exception.ApiException;
 import com.da_thao.project_test.model.MartketPlace;
 import com.da_thao.project_test.repository.InterfaceRepository;
-import com.da_thao.project_test.request_param.vaild_request.RequestInterface;
+import com.da_thao.project_test.request_param.vaild_request.InterfaceRequest;
 import com.da_thao.project_test.service.InterfaceService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -22,7 +22,7 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class MarketPlaceService implements InterfaceService<MartketPlace, MarketPlaceFilter> {
     InterfaceRepository<MartketPlace, MarketPlaceFilter> marketPlaceRepository;
-    RequestInterface<MartketPlace> request;
+    InterfaceRequest<MartketPlace> request;
 
     @Override
     public List<MartketPlace> getAll(MarketPlaceFilter requestParam) {
@@ -48,6 +48,6 @@ public class MarketPlaceService implements InterfaceService<MartketPlace, Market
     @Override
     public MartketPlace update(Integer id, MartketPlace model) {
         if (request.checkRequest(model)) return marketPlaceRepository.update(id, model);
-        throw new ApiException(ErrorCode.EMPLOYEES_UPDATE_FAILED);
+        throw new ApiException(ErrorCode.UPDATE_FAILED);
     }
 }
