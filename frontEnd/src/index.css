@@ -1,0 +1,308 @@
+body {
+  background-color: #181a1b;
+  color: white;
+  line-height: 1;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1440px;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.header {
+  background-color: #171717;
+  border: 1px solid white;
+  display: flex;
+  height: 50px;
+  width: 100%;
+  padding: 15px 30px;
+  margin-top: 20px;
+  align-items: center;
+}
+.header .list {
+  display: flex;
+  cursor: pointer;
+  gap: 30px;
+  font-size: 25px;
+  align-items: center;
+}
+.header .list li a:hover {
+  color: rgb(1, 255, 255);
+}
+
+.body {
+  margin-top: 50px;
+  font-size: 20px;
+  padding: 15px 30px;
+  align-items: center;
+}
+.body .flex {
+  display: flex;
+  align-items: center;
+  gap: 60%;
+}
+.body .editt {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: -11%;
+  position: relative;
+  left: 53%;
+  background: rgba(0, 0, 0, 0.394);
+  cursor: pointer;
+  padding: 5px;
+}
+.body .editt:hover {
+  background-color: black;
+}
+.body .independence-modal {
+  background-color: rgb(19, 39, 66);
+  color: rgb(108, 190, 252);
+  border-radius: 20px;
+  height: auto;
+  width: 1000px;
+  padding: 30px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: fixed;
+  z-index: 9999;
+  top: 10px;
+  left: 20%;
+}
+.body .independence-modal .avatar-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.body .independence-modal .avatar-area .avatar {
+  margin: 5px 10px;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.body .independence-modal .btn-submit {
+  background-color: #3edbf0;
+  height: 34px;
+  width: 100px;
+  padding: 5px;
+  font-size: 15px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+.body .independence-modal .area-action {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+.body .independence-modal .delete:hover {
+  background-color: rgb(255, 12, 12);
+}
+.body .center {
+  text-align: center;
+  font-size: 40px;
+  cursor: pointer;
+  margin-top: 50px;
+}
+.body .column {
+  flex-direction: column;
+}
+.body .column input {
+  margin-bottom: 20px;
+}
+.body .column select {
+  margin-bottom: 20px;
+}
+.body .bai-tap {
+  height: auto;
+  width: 100%;
+  border: 1px solid #3e8df0;
+  padding: 15px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 50px;
+}
+.body .bai-tap .btn-large {
+  height: auto;
+  width: fit-content;
+  font-size: 20px;
+  padding: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+.body .bai-tap .btn-large:hover {
+  background-color: #3e8df0;
+}
+.body .bai-tap .user-request {
+  display: flex;
+  gap: 10px;
+  display: flex;
+}
+.body .bai-tap .user-request .file-area {
+  border: 1px solid;
+  margin: 20px 0px;
+  padding: 5px 10px;
+  width: 90%;
+  display: flex;
+  border-radius: 20px;
+}
+.body .bai-tap .user-request .file-area button {
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.body .bai-tap .user-request .file-area button:hover {
+  background-color: #3edbf0;
+}
+.body .bai-tap .user-request input {
+  padding: 5px;
+  font-size: 15px;
+  height: 20px;
+  width: 90%;
+}
+.body .bai-tap .user-request input:focus {
+  outline: none;
+}
+.body .bai-tap .user-request select {
+  padding: 5px;
+  font-size: 15px;
+  height: 30px;
+  width: 90%;
+}
+.body .bai-tap .user-request .btn-submit {
+  height: 34px;
+  width: 100px;
+  padding: 5px;
+  font-size: 15px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+.body .bai-tap .user-request .btn-submit:hover {
+  background-color: rgb(128, 255, 10);
+}
+.body .bai-tap .user-request .cancel:hover {
+  background-color: rgb(255, 12, 12);
+}
+.body .bai-tap span {
+  font-size: 20px;
+  line-height: 35px;
+}
+.body .bai-tap .modal {
+  padding: 20px 20px;
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.body .bai-tap .modal .modal-user {
+  border: 1px solid #134b6b;
+  height: auto;
+  width: 45%;
+  padding: 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.body .bai-tap .modal .modal-user .avatar-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.body .bai-tap .modal .modal-user .avatar-area .avatar {
+  margin: 5px 10px;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.body .bai-tap .modal .modal-user .btn-submit {
+  padding: 5px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.body .bai-tap .modal .modal-user .area-action {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+.body .bai-tap .modal .modal-user .btn-icon {
+  cursor: pointer;
+  padding: 5px;
+  font-size: 15px;
+  height: 50px;
+  width: 100px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+}
+.body .bai-tap .modal .modal-user .edit:hover {
+  background-color: #3e8df0;
+}
+.body .bai-tap .modal .modal-user .delete:hover {
+  background-color: rgb(255, 12, 12);
+}
+.body .bai-tap .modal .modal-user .detail:hover {
+  background-color: #3edbf0;
+}
+
+/*# sourceMappingURL=index.css.map */
