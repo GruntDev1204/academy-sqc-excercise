@@ -1,0 +1,23 @@
+.header {
+    background-color: $bgrHeader;
+    border: 1px solid white;
+    padding: 15px 30px;
+    margin-top: 20px;
+    align-items: center;
+    @include setPosition(1);
+    @include setSize(50px, 100%);
+
+    .list {
+        @include setPosition(1);
+        cursor: pointer;
+        gap: 30px;
+        font-size: 25px;
+        align-items: center;
+
+        li {
+            a:hover {
+                color: rgb(1, 255, 255);
+            }
+        }
+    }
+}

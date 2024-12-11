@@ -1,0 +1,22 @@
+$bgrHeader : #171717;
+
+@mixin setSize($height , $width) {
+    @if $height !=null {
+        height: $height;
+    }
+
+    @if $width !=null {
+        width: $width;
+    }
+}
+
+@mixin setPosition($value) {
+    @if $value ==1 {
+        display: flex;
+    }
+
+    @if $value ==2 {
+        display: flex;
+        flex-direction: column;
+    }
+}
